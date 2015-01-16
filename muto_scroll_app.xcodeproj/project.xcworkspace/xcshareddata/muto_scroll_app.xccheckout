@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FA7A46A0-142A-450E-903B-1C8154E0223B</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BCB88A5A31A9969D8A1F015C808F10C30F5BA3A4</key>
+		<string>https://github.com/companje/ofxManyMouse.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BCB88A5A31A9969D8A1F015C808F10C30F5BA3A4</key>
+		<string>ofxManyMouse/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/companje/ofxManyMouse.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BCB88A5A31A9969D8A1F015C808F10C30F5BA3A4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BCB88A5A31A9969D8A1F015C808F10C30F5BA3A4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxManyMouse</string>
+		</dict>
+	</array>
+</dict>
+</plist>
