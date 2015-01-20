@@ -5,21 +5,23 @@ void ofApp::setup(){
 //    ofEnableDepthTest();
     // --------------------------------------
     mvPlayer.loadMovie("test_1.mov");
-    mvPlayer.play();
+    mvPlayer.stop();
 	
     x = y = 0;
 	
 	catImage.loadImage("cat-hat.jpg");
     
     // --------------------------------------
-    plane1.set(1024, 768);
-    plane1.setPosition(1024/2, 768/2, 0);
+    plane1.set(ofGetWidth(), ofGetHeight());
+
     plane1.setResolution(2, 2);
-	plane1.resizeToTexture(mvPlayer.getTextureReference(),.1);
-    // --------------------------------------
+	plane1.resizeToTexture(mvPlayer.getTextureReference(),.5);
+	plane1.setPosition(ofGetWidth()/2, ofGetHeight() - (plane1.getHeight()/2), 0);
+
 	
+    // --------------------------------------
     // Settings -----------------------------
-    ofSetFrameRate(30);
+    ofSetFrameRate(60);
     // --------------------------------------
 	
 }
@@ -33,16 +35,20 @@ void ofApp::update(){
 		ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(mvPlayer.getCurrentFrame()));
     }
     
-    plane1.rotate(1, -10, 0, 0.0);
+	
+	plane1.rotate(-rotationSpeed,1,0,0);
+	
+	plane1.rotateAround(-rotationSpeed, ofVec3f(1,0,0), ofVec3f(0,ofGetHeight(),0));
+//	plane1.setPosition(ofGetWidth()/2, ofGetHeight(), 0);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+	ofClear(0,0);
 	mvPlayer.getTextureReference().bind();
 	plane1.draw();
 	mvPlayer.getTextureReference();
-
+	
 }
 
 //--------------------------------------------------------------

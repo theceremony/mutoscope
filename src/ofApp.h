@@ -32,7 +32,8 @@ class ofApp : public ofBaseApp, public ofxManyMouse{
 		ofTexture				planeText;
 		ofPlanePrimitive        plane1;
 		ofxAssimpModelLoader    planeModel;
-		bool					hasResized = false;
+		int						rotationSpeed	= 3;
+		bool					hasResized		= false;
 	
 	int x,y;
 	int alphaLevel = 20;
