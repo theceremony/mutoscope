@@ -2,47 +2,47 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+//    ofEnableDepthTest();
     // --------------------------------------
     mvPlayer.loadMovie("test_1.mov");
-    mvPlayer.stop();
-    // --------------------------------------
-    fbo.allocate(1024,768);
-    // --------------------------------------
-    
+    mvPlayer.play();
+	
     x = y = 0;
-    
+	
+	catImage.loadImage("cat-hat.jpg");
     
     // --------------------------------------
     plane1.set(1024, 768);
     plane1.setPosition(1024/2, 768/2, 0);
     plane1.setResolution(2, 2);
+	plane1.resizeToTexture(mvPlayer.getTextureReference(),.1);
     // --------------------------------------
-    
+	
     // Settings -----------------------------
     ofSetFrameRate(30);
-    ofEnableAlphaBlending();
     // --------------------------------------
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     mvPlayer.update();
-    currentFrame = mvPlayer.getCurrentFrame();
+    
     if(mvPlayer.isFrameNew()){
-        ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(mvPlayer.getCurrentFrame()));
+        currentFrame = mvPlayer.getCurrentFrame();
+		ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(mvPlayer.getCurrentFrame()));
     }
-    plane1.rotate(1, -1, 0, 0.0);
+    
+    plane1.rotate(1, -10, 0, 0.0);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    if (mvPlayer.isFrameNew()) {
-        mvPlayer.draw(x,y, 100, 100);
-        mvPlayer.getTextureReference().bind();
-    }
-    
-    plane1.draw();
-    //plane1.drawWireframe();
+
+	mvPlayer.getTextureReference().bind();
+	plane1.draw();
+	mvPlayer.getTextureReference();
+
 }
 
 //--------------------------------------------------------------

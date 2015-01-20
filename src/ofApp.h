@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxManyMouse.h"
+#include "ofxAssimpModelLoader.h"
 
 class ofApp : public ofBaseApp, public ofxManyMouse{
 
@@ -16,20 +17,25 @@ class ofApp : public ofBaseApp, public ofxManyMouse{
 		void mouseDragged(int x, int y, int button);
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
-        void mouseScroll(int device, int axis, int value);
-        void mouseDisconnect(int device);
+		void mouseScroll(int device, int axis, int value);
+		void mouseDisconnect(int device);
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+	
 
-        ofVideoPlayer       mvPlayer;
-        ofFbo               fbo;
-        ofPixels            fboPixels;
-        ofImage             image;
-        ofPlanePrimitive    plane1;
-    
-    int x,y;
-    int currentFrame;
-    
+		ofVideoPlayer           mvPlayer;
+		ofFbo                   fbo;
+		ofPixels                fboPixels;
+		ofImage                 image;
+		ofImage					catImage;
+		ofTexture				planeText;
+		ofPlanePrimitive        plane1;
+		ofxAssimpModelLoader    planeModel;
+		bool					hasResized = false;
+	
+	int x,y;
+	int alphaLevel = 20;
+	int currentFrame;
+
 };
