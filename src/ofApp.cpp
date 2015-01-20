@@ -2,26 +2,36 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-//    ofEnableDepthTest();
+
     // --------------------------------------
     mvPlayer.loadMovie("test_1.mov");
     mvPlayer.stop();
-	
-    x = y = 0;
-	
-	catImage.loadImage("cat-hat.jpg");
-    
-    // --------------------------------------
-    plane1.set(ofGetWidth(), ofGetHeight());
-
-    plane1.setResolution(2, 2);
-	plane1.resizeToTexture(mvPlayer.getTextureReference(),.5);
-	plane1.setPosition(ofGetWidth()/2, ofGetHeight() - (plane1.getHeight()/2), 0);
+	ofEnableDepthTest();
+	ofEnableLighting();
+	ofEnableAntiAliasing();
 
 	
+	point.setDiffuseColor(ofColor(255.0, 255.0, 255.0));
+	point.setPointLight();
+	point.setPosition(0, -200, 300);
+	point.setSpotConcentration(10);
+	point.enable();
+	
     // --------------------------------------
+	
+	for(int i=0; i < numberOfPlanes; i++){
+		ofPlanePrimitive pl;
+		pl.set(ofGetWidth(), ofGetHeight());
+		pl.setResolution(2, 2);
+		pl.resizeToTexture(mvPlayer.getTextureReference(),.6);
+		pl.setPosition(ofGetWidth()/2, ofGetHeight() - (pl.getHeight()/2), 0);
+		pl.rotate(-((360 /numberOfPlanes) * i),1,0,0);
+		pl.rotateAround(-((360 /numberOfPlanes) * i), ofVec3f(1,0,0), ofVec3f(0,ofGetHeight(),0));
+		planes.push_back(pl);
+	}
+	
     // Settings -----------------------------
-    ofSetFrameRate(60);
+    ofSetFrameRate(30);
     // --------------------------------------
 	
 }
@@ -34,21 +44,23 @@ void ofApp::update(){
         currentFrame = mvPlayer.getCurrentFrame();
 		ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(mvPlayer.getCurrentFrame()));
     }
-    
 	
-	plane1.rotate(-rotationSpeed,1,0,0);
-	
-	plane1.rotateAround(-rotationSpeed, ofVec3f(1,0,0), ofVec3f(0,ofGetHeight(),0));
-//	plane1.setPosition(ofGetWidth()/2, ofGetHeight(), 0);
+	for(int i=0; i < planes.size(); i++){
+		planes[i].rotate(-rotationSpeed,1,0,0);
+		planes[i].rotateAround(-rotationSpeed, ofVec3f(1,0,0), ofVec3f(0,ofGetHeight(),0));
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofClear(0,0);
-	mvPlayer.getTextureReference().bind();
-	plane1.draw();
-	mvPlayer.getTextureReference();
+	for(int i=0; i < planes.size(); i++){
+		mvPlayer.getTextureReference().bind();
+		planes[i].draw();
+		mvPlayer.getTextureReference();
+	}
 	
+	point.draw();
 }
 
 //--------------------------------------------------------------

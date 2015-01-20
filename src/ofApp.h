@@ -24,19 +24,22 @@ class ofApp : public ofBaseApp, public ofxManyMouse{
 		void gotMessage(ofMessage msg);
 	
 
-		ofVideoPlayer           mvPlayer;
-		ofFbo                   fbo;
-		ofPixels                fboPixels;
-		ofImage                 image;
-		ofImage					catImage;
-		ofTexture				planeText;
-		ofPlanePrimitive        plane1;
-		ofxAssimpModelLoader    planeModel;
-		int						rotationSpeed	= 3;
-		bool					hasResized		= false;
 	
-	int x,y;
-	int alphaLevel = 20;
-	int currentFrame;
+
+	ofVideoPlayer           mvPlayer;
+	ofFbo                   fbo;
+	ofPixels                fboPixels;
+	ofImage                 image;
+	ofTexture				planeText;
+	ofPlanePrimitive        plane1;
+	ofLight					point;
+	
+	int						numberOfPlanes	= 5;
+	int						rotationSpeed	= 10;
+	bool					hasResized		= false;
+	int						alphaLevel		= 20;
+	int						currentFrame;
+	
+	vector<ofPlanePrimitive> planes;
 
 };
