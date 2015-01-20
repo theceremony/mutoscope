@@ -6,6 +6,7 @@ void ofApp::setup(){
     // --------------------------------------
     mvPlayer.loadMovie("test_1.mov");
     mvPlayer.stop();
+	mvPlayer.setSpeed(.28);
 	ofEnableDepthTest();
 	ofEnableLighting();
 	ofEnableAntiAliasing();
