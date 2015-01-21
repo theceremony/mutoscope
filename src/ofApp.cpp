@@ -4,18 +4,18 @@
 void ofApp::setup(){
 
     // --------------------------------------
-    mvPlayer.loadMovie("test_1.mov");
-    mvPlayer.stop();
-	mvPlayer.setSpeed(.28);
+    mvPlayer.loadMovie("test2.mov");
+    mvPlayer.play();
+	mvPlayer.setSpeed(1);
 	ofEnableDepthTest();
 	ofEnableLighting();
-	ofEnableAntiAliasing();
+//	ofEnableAntiAliasing();
 
 	
 	point.setDiffuseColor(ofColor(255.0, 255.0, 255.0));
 	point.setPointLight();
-	point.setPosition(0, -200, 300);
-	point.setSpotConcentration(10);
+	point.setPosition(0, -200, 200);
+//	point.setSpotConcentration(10);
 	point.enable();
 	
     // --------------------------------------
@@ -24,10 +24,10 @@ void ofApp::setup(){
 		ofPlanePrimitive pl;
 		pl.set(ofGetWidth(), ofGetHeight());
 		pl.setResolution(2, 2);
-		pl.resizeToTexture(mvPlayer.getTextureReference(),.6);
+		pl.resizeToTexture(mvPlayer.getTextureReference(),1);
 		pl.setPosition(ofGetWidth()/2, ofGetHeight() - (pl.getHeight()/2), 0);
 		pl.rotate(-((360 /numberOfPlanes) * i),1,0,0);
-		pl.rotateAround(-((360 /numberOfPlanes) * i), ofVec3f(1,0,0), ofVec3f(0,ofGetHeight(),0));
+		pl.rotateAround(-((360 /numberOfPlanes) * i), ofVec3f(1,0,0), ofVec3f(0,ofGetHeight() + rotationOffset,0));
 		planes.push_back(pl);
 	}
 	
@@ -48,13 +48,13 @@ void ofApp::update(){
 	
 	for(int i=0; i < planes.size(); i++){
 		planes[i].rotate(-rotationSpeed,1,0,0);
-		planes[i].rotateAround(-rotationSpeed, ofVec3f(1,0,0), ofVec3f(0,ofGetHeight(),0));
+		planes[i].rotateAround(-rotationSpeed, ofVec3f(1,0,0), ofVec3f(0,ofGetHeight()+ rotationOffset,0));
 	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofClear(0,0);
+	ofClear(255,255);
 	for(int i=0; i < planes.size(); i++){
 		mvPlayer.getTextureReference().bind();
 		planes[i].draw();

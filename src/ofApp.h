@@ -34,8 +34,9 @@ class ofApp : public ofBaseApp, public ofxManyMouse{
 	ofPlanePrimitive        plane1;
 	ofLight					point;
 	
-	int						numberOfPlanes	= 5;
-	int						rotationSpeed	= 10;
+	int						numberOfPlanes	= 10;
+	float					rotationSpeed	= 1;
+	int						rotationOffset	= 50;
 	bool					hasResized		= false;
 	int						alphaLevel		= 20;
 	int						currentFrame;
