@@ -4,7 +4,7 @@
 #include "ofMain.h"
 #include "ofxManyMouse.h"
 #include "ofxAssimpModelLoader.h"
-#include "ofxPlaylist.h"
+#include "animatedOfPlanePrimative.h"
 
 class ofApp : public ofBaseApp, public ofxManyMouse{
 
@@ -43,8 +43,6 @@ class ofApp : public ofBaseApp, public ofxManyMouse{
 	int						delayAmount		= 5;
 	int						currentFrame;
 	
-	vector<ofPlanePrimitive>	planes;
-	vector<int>					pRot;
-	vector<int>					delay;
+	vector<AnimatedOfPlanePrimative>	planes;
 
 };
