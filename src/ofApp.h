@@ -1,8 +1,10 @@
 #pragma once
 
+#include "math.h"
 #include "ofMain.h"
 #include "ofxManyMouse.h"
 #include "ofxAssimpModelLoader.h"
+#include "ofxPlaylist.h"
 
 class ofApp : public ofBaseApp, public ofxManyMouse{
 
@@ -35,12 +37,14 @@ class ofApp : public ofBaseApp, public ofxManyMouse{
 	ofLight					point;
 	
 	int						numberOfPlanes	= 10;
-	float					rotationSpeed	= 1;
+	float					rotationSpeed	= 360 / 320;
 	int						rotationOffset	= 50;
 	bool					hasResized		= false;
-	int						alphaLevel		= 20;
+	int						delayAmount		= 5;
 	int						currentFrame;
 	
-	vector<ofPlanePrimitive> planes;
+	vector<ofPlanePrimitive>	planes;
+	vector<int>					pRot;
+	vector<int>					delay;
 
 };
