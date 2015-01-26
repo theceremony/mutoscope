@@ -15,6 +15,8 @@
 class AnimatedOfPlanePrimative : public ofPlanePrimitive{
 	
 	public:
+		AnimatedOfPlanePrimative(void);
+		AnimatedOfPlanePrimative(ofTexture tex);
 		void setup(ofTexture tex);
 		void update();
 		void drawFaces();

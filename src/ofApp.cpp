@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+	planes.reserve(numberOfPlanes);
     // --------------------------------------
     mvPlayer.loadMovie("test_1_720.mov");
     mvPlayer.stop();
@@ -19,10 +19,10 @@ void ofApp::setup(){
     // --------------------------------------
 	
 	for(int i=0; i < numberOfPlanes; i++){
-		AnimatedOfPlanePrimative pl;
-		pl.setup(mvPlayer.getTextureReference());
-		pl.setPosition(ofGetWidth()/2, ofGetHeight() - (pl.getHeight()/2), 0);
-		pl.rotate(-((360 /numberOfPlanes) * i));
+		shared_ptr<AnimatedOfPlanePrimative> pl(new AnimatedOfPlanePrimative(mvPlayer.getTextureReference()));
+//		pl->setup(mvPlayer.getTextureReference());
+		pl->setPosition(ofGetWidth()/2, ofGetHeight() - (pl->getHeight()/2), 0);
+		pl->rotate(-((360 /numberOfPlanes) * i));
 		planes.push_back(pl);
 	}
 	
@@ -41,17 +41,15 @@ void ofApp::update(){
 		ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(mvPlayer.getCurrentFrame()));
     }
 	
-	for(int i=0; i < planes.size(); i++){
-		planes[i].rotate(-rotationSpeed);
-	}
+	for(int i=0; i < planes.size(); i++){ planes[i]->update(); }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-//	ofClear(255,255);
+	ofClear(255,255);
 	for(int i=0; i < planes.size(); i++){
 		mvPlayer.getTextureReference().bind();
-		planes[i].drawFaces();
+		planes[i]->drawFaces();
 		mvPlayer.getTextureReference();
 	}
 	point.draw();

@@ -7,11 +7,16 @@
 //
 
 #include "animatedOfPlanePrimative.h"
+
+AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(void){}
+AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture tex){
+	setup(tex);
+}
 void AnimatedOfPlanePrimative::setup(ofTexture tex){
-	
 	setResolution(2, 2);
 	set(ofGetWidth(), ofGetHeight());
 	resizeToTexture(tex,.5);
+	
 	
 }
 void AnimatedOfPlanePrimative::draw(){
