@@ -23,12 +23,14 @@ class AnimatedOfPlanePrimative : public ofPlanePrimitive{
 		void draw();
 		void rotate(float deg);
 		void setInitialRotation(float rot);
+		void gotMessage(ofMessage msg);
+		void onKeyframe(ofxPlaylistEventArgs& args);
 		float getCurrentRotation();
-		ofxPlaylist	plist;
 	private:
 		float		initialRotation;
+		float		animRot = 0;
 		bool		isAnimating;
-
+		ofxPlaylist	plist;
 };
 
 #endif

@@ -20,7 +20,6 @@ void ofApp::setup(){
 	
 	for(int i=0; i < numberOfPlanes; i++){
 		shared_ptr<AnimatedOfPlanePrimative> pl(new AnimatedOfPlanePrimative(mvPlayer.getTextureReference()));
-//		pl->setup(mvPlayer.getTextureReference());
 		pl->setPosition(ofGetWidth()/2, ofGetHeight() - (pl->getHeight()/2), 0);
 		pl->rotate(-((360 /numberOfPlanes) * i));
 		planes.push_back(pl);
@@ -38,7 +37,7 @@ void ofApp::update(){
     
     if(mvPlayer.isFrameNew()){
         currentFrame = mvPlayer.getCurrentFrame();
-		ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(mvPlayer.getCurrentFrame()));
+//		ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(mvPlayer.getCurrentFrame()));
     }
 	
 	for(int i=0; i < planes.size(); i++){ planes[i]->update(); }

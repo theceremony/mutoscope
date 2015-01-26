@@ -13,11 +13,17 @@ AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture tex){
 	setup(tex);
 }
 void AnimatedOfPlanePrimative::setup(ofTexture tex){
+	ofSetLogLevel(OF_LOG_VERBOSE);
+	ofxKeyframeAnimRegisterEvents(this);
+	
 	setResolution(2, 2);
 	set(ofGetWidth(), ofGetHeight());
 	resizeToTexture(tex,.5);
 	
-	
+	plist.addKeyFrame( Playlist::Action::event(this,"START"))
+		.addKeyFrame( Playlist::Action::tween(1000.f,2000.f,&animRot,-360,Playlist::TWEEN_EXPO) )
+		.addKeyFrame( Playlist::Action::event(this,"END"));
+
 }
 void AnimatedOfPlanePrimative::draw(){
 	ofPlanePrimitive::draw();
@@ -26,7 +32,14 @@ void AnimatedOfPlanePrimative::drawFaces(){
 	ofPlanePrimitive::drawFaces();
 }
 
-void AnimatedOfPlanePrimative::update(){}
+void AnimatedOfPlanePrimative::update(){
+	plist.update();
+	float diff = animRot - getCurrentRotation();
+//	ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(ofGetFrameNum()));
+//	ofLog(OF_LOG_NOTICE, "duration:" +  ofToString(plist.duration));
+//	ofLog(OF_LOG_NOTICE, "diff:" +  ofToString(diff));
+	rotate(diff);
+}
 
 void AnimatedOfPlanePrimative::rotate(float deg){
 	ofPlanePrimitive::rotate(deg,1,0,0);
@@ -40,4 +53,12 @@ void AnimatedOfPlanePrimative::setInitialRotation(float rot){
 
 float AnimatedOfPlanePrimative::getCurrentRotation(){
 	return getOrientationEuler().x;
+}
+
+void AnimatedOfPlanePrimative::onKeyframe(ofxPlaylistEventArgs& args){
+	ofLog(OF_LOG_VERBOSE) << "Keyframe Event received for (" << args.pSender << "): " << args.message << ": " << ofGetFrameNum();
+}
+
+void AnimatedOfPlanePrimative::gotMessage(ofMessage msg){
+	
 }
