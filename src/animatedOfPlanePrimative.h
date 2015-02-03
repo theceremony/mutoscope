@@ -17,7 +17,8 @@ class AnimatedOfPlanePrimative : public ofPlanePrimitive{
 	public:
 		AnimatedOfPlanePrimative(void);
 		AnimatedOfPlanePrimative(ofTexture tex);
-		void setup(ofTexture tex);
+		AnimatedOfPlanePrimative(ofTexture tex,int startStep);
+		void setup(ofTexture tex,int startStep);
 		void update();
 		void drawFaces();
 		void draw();
@@ -26,11 +27,15 @@ class AnimatedOfPlanePrimative : public ofPlanePrimitive{
 		void gotMessage(ofMessage msg);
 		void onKeyframe(ofxPlaylistEventArgs& args);
 		float getCurrentRotation();
+
 	private:
-		float		initialRotation;
-		float		animRot = 0;
-		bool		isAnimating;
-		ofxPlaylist	plist;
+		float			_initialRotation;
+		float			_animRot		= 0;
+		float			_r				= 0;
+		int				_step			= 0;
+		int				_steps			= 360; // decrese number of steps to speed up timing of animation;
+		bool			_isAnimating	= true;
+		ofxEasingExpo*	_ease			= new ofxEasingExpo;
 };
 
 #endif

@@ -19,7 +19,7 @@ void ofApp::setup(){
     // --------------------------------------
 	
 	for(int i=0; i < numberOfPlanes; i++){
-		shared_ptr<AnimatedOfPlanePrimative> pl(new AnimatedOfPlanePrimative(mvPlayer.getTextureReference()));
+		shared_ptr<AnimatedOfPlanePrimative> pl(new AnimatedOfPlanePrimative(mvPlayer.getTextureReference(),i*10));
 		pl->setPosition(ofGetWidth()/2, ofGetHeight() - (pl->getHeight()/2), 0);
 		pl->rotate(-((360 /numberOfPlanes) * i));
 		planes.push_back(pl);
