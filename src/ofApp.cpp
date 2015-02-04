@@ -33,24 +33,15 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    mvPlayer.update();
-    
-    if(mvPlayer.isFrameNew()){
-        currentFrame = mvPlayer.getCurrentFrame();
-//		ofLog(OF_LOG_NOTICE, "CURRENT FRAME:" +  ofToString(mvPlayer.getCurrentFrame()));
-    }
-	
+	mvPlayer.update();
+	if(mvPlayer.isFrameNew()) currentFrame = mvPlayer.getCurrentFrame();
 	for(int i=0; i < planes.size(); i++){ planes[i]->update(); }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofClear(255,255);
-	for(int i=0; i < planes.size(); i++){
-		mvPlayer.getTextureReference().bind();
-		planes[i]->drawFaces();
-		mvPlayer.getTextureReference();
-	}
+	for(int i=0; i < planes.size(); i++) planes[i]->drawFaces();
 	point.draw();
 }
 
@@ -66,12 +57,12 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-    
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-    
+    ofLog(OF_LOG_NOTICE, "mouseDragged: " + ofToString(button));
 }
 
 
@@ -93,7 +84,8 @@ void ofApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mouseScroll(int device, int axis, int value){
-    ofLog(OF_LOG_NOTICE, "Mouse scroll:" + ofToString(axis));
+    ofLog(OF_LOG_NOTICE, "Mouse scroll:" + ofToString(value));
+	mvPlayer.setFrame(currentFrame + value);
 }
 
 //--------------------------------------------------------------

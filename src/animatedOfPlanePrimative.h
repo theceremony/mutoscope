@@ -16,9 +16,9 @@ class AnimatedOfPlanePrimative : public ofPlanePrimitive{
 	
 	public:
 		AnimatedOfPlanePrimative(void);
-		AnimatedOfPlanePrimative(ofTexture tex);
-		AnimatedOfPlanePrimative(ofTexture tex,int startStep);
-		void setup(ofTexture tex,int startStep);
+		AnimatedOfPlanePrimative(ofTexture &tex);
+		AnimatedOfPlanePrimative(ofTexture &tex,int startStep);
+		void setup(ofTexture &tex,int startStep);
 		void update();
 		void drawFaces();
 		void draw();
@@ -29,6 +29,7 @@ class AnimatedOfPlanePrimative : public ofPlanePrimitive{
 		float getCurrentRotation();
 
 	private:
+		ofTexture		_texture;
 		float			_initialRotation;
 		float			_animRot		= 0;
 		float			_r				= 0;

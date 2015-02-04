@@ -1,6 +1,5 @@
 #pragma once
 
-#include <tr1/memory>
 #include "math.h"
 #include "ofMain.h"
 #include "ofxManyMouse.h"
@@ -27,6 +26,8 @@ class ofApp : public ofBaseApp, public ofxManyMouse{
 		void gotMessage(ofMessage msg);
 	
 
+	
+
 	ofVideoPlayer           mvPlayer;
 	ofFbo                   fbo;
 	ofPixels                fboPixels;
@@ -43,5 +44,4 @@ class ofApp : public ofBaseApp, public ofxManyMouse{
 	int						currentFrame;
 	
 	vector<shared_ptr<AnimatedOfPlanePrimative> > planes;
-
 };

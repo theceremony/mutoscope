@@ -9,25 +9,28 @@
 #include "animatedOfPlanePrimative.h"
 
 AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(void){}
-AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture tex){
+AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture &tex){
 	setup(tex,0);
 }
-AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture tex,int startStep){
+AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture &tex,int startStep){
 	setup(tex,startStep);
 }
-void AnimatedOfPlanePrimative::setup(ofTexture tex,int startStep){
-	ofSetLogLevel(OF_LOG_VERBOSE);
-	ofxKeyframeAnimRegisterEvents(this);
+void AnimatedOfPlanePrimative::setup(ofTexture &tex,int startStep){
+	_texture = tex;
 	_step = startStep;
 	setResolution(2, 2);
 	set(ofGetWidth(), ofGetHeight());
-	resizeToTexture(tex,.5);
+	resizeToTexture(_texture,.5);
 }
 void AnimatedOfPlanePrimative::draw(){
+	_texture.bind();
 	ofPlanePrimitive::draw();
+	_texture.unbind();
 }
 void AnimatedOfPlanePrimative::drawFaces(){
+	_texture.bind();
 	ofPlanePrimitive::drawFaces();
+	_texture.unbind();
 }
 
 void AnimatedOfPlanePrimative::update(){
