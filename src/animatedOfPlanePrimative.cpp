@@ -15,12 +15,16 @@ AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture &tex){
 AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture &tex,int startStep){
 	setup(tex,startStep);
 }
+AnimatedOfPlanePrimative::AnimatedOfPlanePrimative(ofTexture &tex,int startStep, int &steps){
+	_steps = steps;
+	setup(tex,startStep);
+}
 void AnimatedOfPlanePrimative::setup(ofTexture &tex,int startStep){
 	_texture = tex;
 	_step = startStep;
 	setResolution(2, 2);
 	set(ofGetWidth(), ofGetHeight());
-	resizeToTexture(_texture,.5);
+	resizeToTexture(_texture,1);
 }
 void AnimatedOfPlanePrimative::draw(){
 	_texture.bind();
